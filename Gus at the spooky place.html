@@ -11,75 +11,143 @@
 
 <tw-story></tw-story>
 
-<tw-storydata name="Gus at the spooky place" startnode="5" creator="Twine" creator-version="2.3.5" ifid="5CC4C549-8D16-4312-96D0-A9390334218D" zoom="1" format="Harlowe" format-version="3.1.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Looking around" tags="" position="500,200" size="100,100">As you look around the room, you are able to find a dull knife underneath the bed you were on. What do you choose to do?
+<tw-storydata name="Gus at the spooky place" startnode="5" creator="Twine" creator-version="2.3.5" ifid="5CC4C549-8D16-4312-96D0-A9390334218D" zoom="1" format="Harlowe" format-version="3.1.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Looking around" tags="" position="499,149" size="100,100">
+The sinister voice laughs and becomes faint as the individual walks away.
+As you look around the room, you are able to find a dull knife underneath the bed you were on. What do you choose to do?
 
 [[&quot;Cut the rope&quot;|Explore]]
-[[&quot;Cut your hands&quot;|Die]]</tw-passagedata><tw-passagedata pid="2" name="Explore" tags="" position="900,99" size="100,100">You thought you were going to struggle, but the rope was no match for the knife. You have now freed your hands. It is a good idea to keep the knife on your person, just in case.
-(color:yellow)[+1 Knife]
+[[&quot;Cut your hands&quot;|Die]]</tw-passagedata><tw-passagedata pid="2" name="Explore" tags="Stats" position="857,65" size="100,100">You thought you were going to struggle, but the rope was no match for the knife. You have now freed your hands. 
 
 What do you choose to do now?
 [[Leave Room]]
 [[Explore Room]]
 [[Freak Out]] 
+[[&quot;Think&quot;|Explore]]		
 
-(set: $knife to true)</tw-passagedata><tw-passagedata pid="3" name="Die" tags="" position="100,100" size="100,100">(color:red)[&#39;&#39;You Died&#39;&#39;]
+It is a good idea to keep the knife on your person, just in case.
+(color:yellow)[+1 Knife] (set: $knife to true)</tw-passagedata><tw-passagedata pid="3" name="Die" tags="" position="491,0" size="100,100">Health:0
+Mental Health: $mhealth
+----------
+(color:red)[&#39;&#39;You Died&#39;&#39;]
 
-[[&quot;That wasn&#39;t very smart. Let&#39;s try that again&quot;|Looking around]] </tw-passagedata><tw-passagedata pid="4" name="Freak Out" tags="" position="800,300" size="100,100">You begin to freak out, but freaking out makes it hard for you to see. You become disoriented, and decide to take a breath.
+[[&quot;That wasn&#39;t very smart. Let&#39;s try that again&quot;|Looking around]] </tw-passagedata><tw-passagedata pid="4" name="Freak Out" tags="" position="825,352" size="100,100">Health:$health
+Mental Health:(set: $mhealth to $mhealth-10) $mhealth
+--------------
 
+You begin to freak out, but freaking out makes it hard for you to see. You become disoriented, and decide to take a breath.
+(color:red)[-10 mental health]
+
+(if: $mhealth &gt; 0)[
 [[&quot;Compose yourself and recall what just happened&quot;|Explore]]
-[[&quot;Freak out again&quot;|Freak Out]]</tw-passagedata><tw-passagedata pid="5" name="Begin in the room" tags="" position="500,0" size="100,100">
-You wake up, unable to recall the circumstance that has put you here. Your hands are tied, but you are still able to move them around. In the vast darkness, you notice the time on your watch
- (color:grey)[&#39;&#39;11:45&#39;&#39;]. 
-You need to get out and you need to do it as fast as you can.
-[[&quot;Look around the room&quot;|Looking around]] 
-</tw-passagedata><tw-passagedata pid="6" name="Leave Room" tags="" position="1050,325" size="100,100">You leave the room and as you enter the hallway, the door behind you shuts closed.
+[[&quot;Freak out again&quot;|Freak Out]]]
+(else:)
+[[&quot;Except something feels off&quot;|Death]] </tw-passagedata><tw-passagedata pid="5" name="Begin in the room" tags="Stats" position="59,72" size="100,100">You wake up, unable to recall the circumstance that has put you here. Your hands are tied, but you are still able to move them around. In the vast darkness, you notice the time on your watch
 
-[[&quot;Continue&quot;|First Hall]] </tw-passagedata><tw-passagedata pid="7" name="Explore Room" tags="" position="1100,200" size="100,100">You decide it&#39;s a good idea to explore the room. You&#39;re putting your grubby hands over anything and everything. As you move the drawers, you hear something fall.
+ (color:grey)[&#39;&#39;11:45&#39;&#39;]. 
+
+
+
+You hear a voice, possibly behind the door. 
+
+[[&quot;Listen&quot;|Voice]] 
+
+
+
+(set: $dog to &quot;alive&quot;)</tw-passagedata><tw-passagedata pid="6" name="Leave Room" tags="" position="1050,325" size="100,100">You leave the room and as you enter the hallway, the door behind you shuts closed.
+
+[[&quot;Continue&quot;|First Hall]] </tw-passagedata><tw-passagedata pid="7" name="Explore Room" tags="" position="1153,81" size="100,100">You decide it&#39;s a good idea to explore the room. You&#39;re putting your grubby hands over anything and everything. As you move the drawers, you hear something fall.
 
 You&#39;ve found a gun. It has 3 bullets left
-(color:gold)[+1 gun]
-(color:gold)[+3 bullets]
+(color:yellow)[+1 gun] (set: $gun to true)
+(color:yellow)[+3 bullets] (set: $bullets to 3)
 
 [[&quot;Check Inventory&quot;|Inventory0]]
-[[Leave Room]] 
-(set: $gun to true)
-(set: $bullets to 3)</tw-passagedata><tw-passagedata pid="8" name="Go to door on the left" tags="" position="1050,600" size="100,100">You put your hand on the doorknob and it won&#39;t budge. It appears to be closed. There is an inscription on the door. (color:brown)[//To open the door, look for the Spade//]
+[[Leave Room]]</tw-passagedata><tw-passagedata pid="8" name="Go to door on the left" tags="" position="1050,600" size="100,100">You put your hand on the doorknob and it won&#39;t budge. It appears to be closed. There is an inscription on the door. (color:gray)[//To open the door, look for the Spade//]
 
 [[&quot;Check the other door&quot;|Go to door on the right]] 
-[[&quot;Walk down the hall&quot;|Keep walking forward]] </tw-passagedata><tw-passagedata pid="9" name="Go to door on the right" tags="fight" position="875,600" size="100,100">You enter the room, it&#39;s mostly dark except for the faint lamp burning closest to you.
-(color:red)[However, you feel you aren&#39;t alone]
+[[&quot;Walk down the hall&quot;|Keep walking forward]] </tw-passagedata><tw-passagedata pid="9" name="Go to door on the right" tags="fight" position="768,539" size="100,100">You enter the room, it&#39;s mostly dark except for the faint lamp burning closest to you.
+(if: $dog is &quot;alive&quot;)+(color:red)[However, you feel you aren&#39;t alone]
+(if: $dog is &quot;dead&quot;)[You remember what happened here]
 
-[[Continue|Fight1]]</tw-passagedata><tw-passagedata pid="10" name="Keep walking forward" tags="" position="1200,600" size="100,100">You continue walking forward, there is a window at the end of the hall and the hallway continues on your right.
+(if: $dog is &quot;alive&quot;)[[&quot;Continue&quot;|Fight1]]
+(if: $dog is &quot;dead&quot;) [[&quot;Continue&quot;|DogRoom]]</tw-passagedata><tw-passagedata pid="10" name="Keep walking forward" tags="" position="1200,600" size="100,100">You continue walking forward, there is a window at the end of the hall and the hallway continues on your right.
 
 [[Look outside the window]]
-[[&quot;Keep walking&quot;|Right Hallway enter]]
-[[</tw-passagedata><tw-passagedata pid="11" name="Look outside the window" tags="" position="1125,800" size="100,100">(color:gray)[You look outside and can&#39;t see much except what is a few feet away due to the heavy rain.]</tw-passagedata><tw-passagedata pid="12" name="Right Hallway enter" tags="" position="1275,800" size="100,100">You decide to walk to the right.
+[[&quot;Keep walking&quot;|Right Hallway enter]]</tw-passagedata><tw-passagedata pid="11" name="Look outside the window" tags="" position="1125,800" size="100,100">(color:gray)[You look outside and can&#39;t see much except what is a few feet away due to the heavy rain.]</tw-passagedata><tw-passagedata pid="12" name="Right Hallway enter" tags="" position="1359,800" size="100,100">You decide to walk to the right.
 
-[[&quot;Continue&quot;|Right Hall]]</tw-passagedata><tw-passagedata pid="13" name="Right Hall" tags="" position="1275,950" size="100,100">There&#39;s a door close to you, furthest from you, and a window on your right.
+[[&quot;Continue&quot;|Right Hall]]</tw-passagedata><tw-passagedata pid="13" name="Right Hall" tags="" position="1236,948" size="100,100">There&#39;s a door close to you, furthest from you, and a window on your right.
 
 [[&quot;Check outside&quot;|Look outside the window]]
 [[&quot;Open closest door&quot;|RightFirstDoor]]
-[[&quot;Open furthest door&quot;|RightSecondDoor]]</tw-passagedata><tw-passagedata pid="14" name="RightFirstDoor" tags="" position="1200,1100" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="15" name="RightSecondDoor" tags="" position="1350,1100" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="16" name="Fight1" tags="" position="600,600" size="100,100">A chained dog tries to harm you, but due to the chain it is unable to bite you.
+[[&quot;Open furthest door&quot;|RightSecondDoor]]</tw-passagedata><tw-passagedata pid="14" name="RightFirstDoor" tags="" position="1200,1100" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="15" name="RightSecondDoor" tags="" position="1350,1100" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="16" name="Fight1" tags="" position="414,465" size="100,100">Health: $health
+Mental Health: $mhealth
+A chained dog tries to harm you, but due to the chain it is unable to bite you.
 
-[[&quot;You use your gun to kill the dog.&quot;|KillDog]][-1 bullet]
-[[&quot;You decide to use the knife to kill the dog.&quot;|KillDog]]
-[[&quot;Try to free the dog&quot;|FreeDog]]</tw-passagedata><tw-passagedata pid="17" name="KillDog" tags="" position="700,725" size="100,100">You put down the dog and see the life fleeting slowly and painfully. You can&#39;t help but feel sorry for the life the dog was given.
+(if: $gun is true)[[&quot;You use your gun to kill the dog.&quot;|KillDog]]+(color:orange)[-1 bullet]
+(if: $knife is true)[[&quot;You decide to use the knife to kill the dog.&quot;|KillDog]]
+(else:)[[&quot;Try to free the dog&quot;|FreeDog]]</tw-passagedata><tw-passagedata pid="17" name="KillDog" tags="" position="527,667" size="100,100">You put down the dog and see the life fleeting slowly and painfully. You can&#39;t help but feel sorry for the life the dog was given.
 
-After a moment of silence, you get up.
+You pay your respects and after a moment of silence, you get up.
 
-[[&quot;Look around the room&quot;|FindItem]]
-[[&quot;
-</tw-passagedata><tw-passagedata pid="18" name="FreeDog" tags="" position="500,725" size="100,100">Freeing the dog was a mistake and it proceeds to harm you.
-(color:red)[-1 health]
-[[&quot;There&#39;s no other choice&quot;|KillDog]] </tw-passagedata><tw-passagedata pid="19" name="FindItem" tags="" position="725,900" size="100,100">You find a key! It appears to be </tw-passagedata><tw-passagedata pid="20" name="First Hall" tags="" position="1050,450" size="100,100">What will you do?
+[[&quot;Continue&quot;|DogRoom]]
+
+(set: $dog to &quot;dead&quot;)</tw-passagedata><tw-passagedata pid="18" name="FreeDog" tags="" position="155,658" size="100,100">Freeing the dog was a mistake and it proceeds to harm you.
+(color:red)[-1 health](set: $health to $health - 1)
+
+(if: [$knife is false] and [$gun is false])+[You aren&#39;t able to protect yourself and the beast tears you apart.]+[[&quot;Continue&quot;|Death]]
+
+(if: [$knife is false] and [$gun is true])+[The beast stares at you as you pull out your gun.]+[[&quot;There is no other choice&quot;|KillDog]]
+
+(if: [$knife is true] and [$gun is true])[[&quot;There&#39;s no other choice&quot;|KillDog]] </tw-passagedata><tw-passagedata pid="19" name="FindItem" tags="" position="632,890" size="100,100">You find a key! It appears to be </tw-passagedata><tw-passagedata pid="20" name="First Hall" tags="" position="1050,450" size="100,100">Health:$health
+Mental Health: $mhealth
+-------------
+What will you do?
 [[Go to door on the left]]
 [[Go to door on the right]]
-[[Keep walking forward]]</tw-passagedata><tw-passagedata pid="21" name="Inventory0" tags="" position="1170,350" size="100,100">Inventory:
-(if: $knife is true)Knife
-(if: $gun is true)Gun
+[[Keep walking forward]]</tw-passagedata><tw-passagedata pid="21" name="Inventory0" tags="" position="1351,200" size="100,100">Inventory:
+(if: $knife is true)[Knife]
+(if: $gun is true)[Gun]
 Ammo: $bullets
 
-[[&quot;Go Back&quot;|Explore Room]] </tw-passagedata></tw-storydata>
+[[&quot;Go Back&quot;|Explore Room]] </tw-passagedata><tw-passagedata pid="22" name="Death" tags="" position="79,330" size="100,100">(if: $health is 0)[As you drew your last breath, you lament at the fact that you were unable to leave the strange place you were in. If only next time, things could be different.]
+(if: $mhealth is 0)[Your mind corrupted and you can&#39;t tell what is real and what is a figment of your mind&#39;s sabotage. You close your eyes, only to realize you can&#39;t open them again.]
+
+[[&quot;Begin from the beginning&quot;|Begin in the room]] </tw-passagedata><tw-passagedata pid="23" name="DogRoom" tags="" position="824,808" size="100,100">Health: $health
+Mental Health: $mhealth
+--------------
+The room is faintly lit and the scent of blood clouds the room. You&#39;re not quite sure why you&#39;re here.
+
+
+[[&quot;Look around the room&quot;|FindItem]]
+[[&quot;Check Inventory&quot;|Inventory]]
+[[&quot;Exit Room&quot;|First Hall]] </tw-passagedata><tw-passagedata pid="24" name="Inventory" tags="" position="1010,930" size="100,100">Inventory:
+(if: $knife is true)[Knife]
+(if: $gun is true)[Gun]
+Ammo: $bullets
+
+[[&quot;Go Back&quot;|DogRoom]] </tw-passagedata><tw-passagedata pid="25" name="Voice" tags="" position="223,143" size="100,100">
+#(color:red)[Once the night is over, then your soul and body will separate. By then your body will be mine, as your soul is damned to exist with nowhere to go for eternity!]
+
+You need to get out and you need to do it as fast as you can.
+[[&quot;Look around the room&quot;|Looking around]] 
+</tw-passagedata><tw-passagedata pid="26" name="Status" tags="header" position="216,12" size="100,100">{(live:1s)[
+	(set: $time to $time + 1)]
+
+(if: $time == 10)[
+	&lt;&lt;goto: &quot;Dying&quot;&gt;&gt;
+	]
+
+(if: (passage:)&#39;s tags contains &quot;Stats&quot;)[
+	(live:1s)
+		[
+		Health:(set: $health to 10) $health &lt;br&gt;
+		Mental Health:(set: $mhealth to 100)$mhealth&lt;br&gt;
+		Time Left: $time
+		
+		]	
+]}
+------------------
+&lt;br&gt;</tw-passagedata><tw-passagedata pid="27" name="Dying" tags="" position="276,375" size="100,100">Your soul escaped</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">"use strict";function _defineProperty(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var _slicedToArray=function(){function e(e,t){var n=[],r=!0,i=!1,o=void 0;try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){i=!0,o=e}finally{try{!r&&s.return&&s.return()}finally{if(i)throw o}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(){/**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
